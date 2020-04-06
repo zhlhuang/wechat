@@ -33,10 +33,12 @@ class TestCase extends BaseTestCase
     {
         $methods = implode(',', array_merge([
             'httpGet', 'httpPost', 'httpPostJson', 'httpUpload',
-            'request', 'requestRaw', 'registerMiddlewares',
+            'request', 'requestRaw', 'requestArray', 'registerMiddlewares',
         ], (array) $methods));
 
-        $client = \Mockery::mock($name."[{$methods}]", [
+        $client = \Mockery::mock(
+            $name."[{$methods}]",
+            [
                 $app ?? \Mockery::mock(ServiceContainer::class),
                 \Mockery::mock(AccessToken::class), ]
         )->shouldAllowMockingProtectedMethods();
